@@ -1,0 +1,24 @@
+This repository (under construction) will contain a sequence of programming exercises 
+intended to fill the gap between learning the correct syntax of basic R commands and 
+the programming assignments in the R Programming course in the Johns Hopkins University 
+Data Science Specialization on Coursera. In this sequence of exercises in "composing" 
+an R function to carry out a particular task, the idea is to practice correct use 
+of R constructs and built in functions (functions the "come with" the basic R installation), 
+while "putting together" a correct sequence of commands that will obtain the desired result.
+
+In these exercises, there will be a statement of what your function should do 
+(what are the input variables and what the function should return) and a sequence of "hints". 
+To get the most out of these exercises, try to write your function using as few hints as possible. 
+ 
+Note there are often several ways to write a function that will obtain the correct result. 
+For these exercises the directions and hints may point toward a particular approach intended 
+to practice particular constructs in R and a particular line of reasoning.  
+There well may be an existing R function or package that will do what is stated for a given 
+practice exercise, but here (unlike other aspects of the R Programming course) the point 
+is to practice "putting together" a logical sequence of steps, 
+with each step a section of code, to obtain a working function, 
+not to find an existing solution or a quick solution using a 
+more powerful R construct that is better addressed later on.
+
+
+

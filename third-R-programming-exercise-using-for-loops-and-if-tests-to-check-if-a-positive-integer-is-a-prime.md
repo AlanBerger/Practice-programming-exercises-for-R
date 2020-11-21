@@ -1,7 +1,7 @@
 "Third programming exercise using for loops and if tests to check if a positive integer is a prime"
 ---------------------------------------------------------------------------------------------------
 
-### Alan E. Berger Sept 24, 2020
+### Alan E. Berger Sept 24, 2020 minor edits 21 Nov 2020
 
 ### version 1
 
@@ -67,7 +67,8 @@ This sequence of exercises will work through the construction of several functio
 
 ### Instruction for the first function in this exercise
 
-The first function in this sequence will be **isItPrime(n)** whose argument is a positive integer n less than 1,000,000 (just to avoid accidently starting an extremely time consuming calculation) which will return either TRUE if n is a prime and FALSE otherwise. To do this, treat the two cases n equal 1 (not a prime) and n equal 2 (a prime) separately (at the beginning of the function). Then for n greater than 2 simply check whether any integer between 2 and (n-1) evenly divides n (we will make this more efficient in the next version of isItPrime). Note my usage of the phrase: values "between X and Y" includes the "endpoints" X and Y. A skeleton of this funtion is:
+The first function in this sequence will be **isItPrime(n)** whose argument is a positive integer n that is
+at most 1,000,000 (just to avoid accidently starting an extremely time consuming calculation) which will return either TRUE if n is a prime and FALSE otherwise. To do this, treat the two cases n equal 1 (not a prime) and n equal 2 (a prime) separately (at the beginning of the function). Then for n greater than 2 simply check whether any integer between 2 and (n-1) evenly divides n (we will make this more efficient in the next version of isItPrime). Note my usage of the phrase: values "between X and Y" includes the "endpoints" X and Y. A skeleton of this funtion is:
 
     isItPrimeV1 <- function(n) {
     # determine whether the positive integer n is prime
@@ -140,8 +141,6 @@ for (q in 2:(n-1)) {
 
 # if got to here, n is prime
 return(TRUE)  
-# one could just as well have used an else statement 
-#
 }
 
 #####
@@ -238,8 +237,7 @@ for (q in 2:lastq) {
    }
 
 # if got to here, n is prime
-return(TRUE)
-# one could just as well have used an else statement 
+return(TRUE) 
 }
 
 
@@ -294,7 +292,7 @@ isItPrime(2^6 - 1)   # known to be not prime
 
 Debugging syntax errors (such as forgetting a parenthesis or bracket or curly brace or typing one of these when another is required, or typing a left one when a right one is needed etc.) or using the $ form to extract a column from a data frame with a **variable** that contains a column name but not an actual name of a column (which doesn't even give an error message! - R just returns **NULL**), and debugging errors in the logical construction of the code as in this case, can be a frustrating part of programming, but is a necessary skill that one learns with practice (more on this in later exercises).
 
-In the test cases, this code failed for n = 3. So look at each line of the code (from the top) and think about (or, in general (but not needed here), print out, or for larger objects use head or tail or str (structure) to look at) what takes place in each line (that is, what was the new value of the variable that was created or modified in that line). Or, in this case, since the code worked before, look at the effect of what was changed, which was to run the for loop from 2 to lastq equal to (in the case that failed) as.integer(sqrt(3)). Well, sqrt(3) is 1.732 (to 4 significant digits) so lastq is 1 when n = 3, and the range of the for loop in this case is the two values {2, 1} and 1 evenly divides any integer, so that is why the code failed (returned FALSE when n was 3). This is an example of the type of reasoning used to track down a coding error. The failure only occurs with n equal 3 since for n larger than 3, as.integer(sqrt(n)) is at least 2. One easy fix is to do the case n = 3 "by hand": add the if test: if(n.int == 3) return(TRUE)
+In the test cases, this code failed for n = 3. So look at each line of the code (from the top) and think about (or, in general (but not needed here), print out, or for larger objects use head or tail or str (structure) to look at) what takes place in each line (that is, what was the new value of the variable that was created or modified in that line). Note the upper right RStudio sub-window (Global Environment) displays helpful information on existing R objects if you run the lines of a function in the R console (not within a function), which is often a useful way to do testing and debugging. Or, in this case, since the code worked before, look at the effect of what was changed, which was to run the for loop from 2 to lastq equal to (in the case that failed) as.integer(sqrt(3)). Well, sqrt(3) is 1.732 (to 4 significant digits) so lastq is 1 when n = 3, and the range of the for loop in this case is the two values {2, 1} and 1 evenly divides any integer, so that is why the code failed (returned FALSE when n was 3). This is an example of the type of reasoning used to track down a coding error. The failure only occurs with n equal 3 since for n larger than 3, as.integer(sqrt(n)) is at least 2. One easy fix is to do the case n = 3 "by hand": add the if test: if(n.int == 3) return(TRUE)
 Another way is to increase lastq by 1: lastq &lt;- as.integer(sqrt(n)) + 1L (With some algebra one can check that this value of lastq is &lt; n when n is at least 3, so it is alright to use this value of lastq in isItPrime). Here is a version that works:
 
 ``` r
@@ -333,7 +331,6 @@ for (q in 2:lastq) {
 
 # if got to here, n is prime
 return(TRUE)
-# one could just as well have used an else statement 
 }
 
 

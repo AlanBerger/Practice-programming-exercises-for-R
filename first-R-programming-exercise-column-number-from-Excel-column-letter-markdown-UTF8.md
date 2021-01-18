@@ -1,7 +1,7 @@
 "First programming exercise"
 ----------------------------
 
-### Alan Berger Aug 20, 2020
+### Alan Berger Aug 20, 2020 minor edits Jan 18, 2021
 
 ### additional R code, run the functions, and some text edits Aug 22, 2020
 
@@ -49,8 +49,8 @@ column number.
 
 ### Instruction for this function
 
-For the first version of your function, just have it work for column
-letters a through z and only take as input lower case letters. The
+For the first version of your function, just have it work for a column
+letter between a and z and only take as input a lower case letter. The
 skeleton of your function should "look like"
 
     colnameToNumber <- function(colname) {
@@ -65,10 +65,10 @@ skeleton of your function should "look like"
         return(colnumber)
     }
 
-Directions: do NOT use any if statements (yes, one could do 26 if
-statements of the form `if(colname == "a") colnumber = 1` and so on,
-but, among other things, it would be easy to have typographic mistakes,
-and writing all those out would get pretty boring).
+Directions: do NOT use a whole bunch of if statements (yes, one could do
+26 if statements of the form `if(colname == "a") colnumber = 1` and so
+on, but, among other things, it would be easy to have typographic
+mistakes, and writing all those out would get pretty boring).
 
 Note that the built in R variable (R object) **letters** is the
 character vector with entries "a", "b", ... , "z" and note the built in

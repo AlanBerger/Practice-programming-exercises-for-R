@@ -1,7 +1,7 @@
 "Second programming exercise if, else if, else syntax and logic"
 ----------------------------------------------------------------
 
-### Alan Berger Aug 25, 2020
+### Alan Berger Aug 25, 2020 minor edits Jan 18, 2021
 
 ### version 1
 
@@ -115,9 +115,9 @@ and spot bugs in.
     # test that color matched one of the above choices
     if(identical(rgbvec, 0)) stop("color did not match one of the choices")
 
-    # this is just an example, for "real" use one would want to have a data frame
+    # This is just an example, for "real" use for getting rgb colors one would want to have a data frame
     # with this information (many color names and corresponding rgb values) 
-    # and extract the rgb values from it.
+    # and extract the rgb values for a given color from it.
     # The color information above came from
     # https://en.wikipedia.org/wiki/Web_colors
     # side note: there are web sites for checking how a color figure would appear
@@ -167,7 +167,7 @@ was being measured).
 The bottom line is that for this exercise we want to convert pval to a
 character string having 3 significant digits.
 
-Yes, one could do this by simply using the **signif** or **format**
+Again, one could do this by simply using the **signif** or **format**
 function, but the point here is to practice if logic. So you are to use
 the **round** function which takes as input a number (or vector) and
 "rounds" the input value(s) to have only a specified number of digits
@@ -197,8 +197,9 @@ the right of the decimal point in the returned value.
 Your function, call it pval\_To\_3Sig\_Digits should have the 1 argument
 pval (a number between 0 and 1, including 0 and 1) and should return a
 character string corresponding to pval rounded to 3 significant digits,
-using one if, else if, else block, and the round function. If pval is
-&lt; 0.00001, then return the character string "p &lt; 0.00001" The
+using one if, else if, else block of code (that will have multiple else
+if statements within it), and the round function. If pval is &lt;
+0.00001, then return the character string "p &lt; 0.00001" The
 **as.character** function will convert a numeric value to the
 corresponding character string
 
@@ -207,7 +208,10 @@ possible.
 
 Think about how to order the conditions in the if, else if, else
 statements. Start by treating smaller p-values first and end with larger
-p-values.
+p-values. Note more than 1 test within an if, else if, else block of
+code might be satisfied: in that case the "consequence" of the first
+test that is satisfied will be carried out and then control will pass to
+the first statement after the if, elseif, else block of code.
 
 Larger hint: the beginning and end of your function should resemble
 
@@ -242,7 +246,7 @@ Larger hint: the beginning and end of your function should resemble
     #   digits = 6 does not give more than 3 significant digits
 
 
-    #   MORE CODE
+    #   MORE CODE needs to be provided
 
 
         } else {
@@ -252,9 +256,9 @@ Larger hint: the beginning and end of your function should resemble
     return(pval.string)
     }
 
-One could also start with pval = 1 and "work downward" using
-successively smaller values of pval, but then the if tests will involve
-testing whether pval &gt;= some value
+One could also start testing if pval &gt;= 0.001 and "work downward"
+using successively smaller values of pval; doing it this way, the else
+if tests will involve testing whether pval &gt;= some value
 
 A working version of pval\_To\_3Sig\_Digits
 -------------------------------------------

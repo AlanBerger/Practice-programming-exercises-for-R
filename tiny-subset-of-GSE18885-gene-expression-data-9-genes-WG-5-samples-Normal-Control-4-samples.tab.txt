@@ -1,0 +1,25 @@
+Illumina PROBE_ID	gene	NC 1	NC 2	NC 3	NC 4	WG 1	WG 2	WG 3	WG 4	WG 5
+ILMN_1730867	AZU1	7.5719	7.8004	9.2853	7.6631	10.1137	7.7436	9.2764	13.2686	7.5619
+ILMN_1766736	BPI	7.6313	8.054	8.5862	8.3428	10.2506	8.7722	10.3036	14.3789	8.2839
+ILMN_1688580	CAMP	8.7349	8.4446	9.9021	8.6375	12.1782	9.1157	13.2256	14.9976	9.5919
+ILMN_1806056	CEACAM8	8.3485	8.2501	10.2744	8.1821	11.8043	8.0849	12.3573	15.3588	8.3634
+ILMN_1753347	DEFA4	7.9815	8.5601	10.7857	7.9922	12.5999	8.4461	11.2124	15.4463	8.6771
+ILMN_1706635	ELA2	8.8103	8.8859	11.1437	8.5417	11.5893	8.8538	10.5037	15.0403	8.2517
+ILMN_1796316	MMP9	7.5506	7.5359	7.6544	7.6399	9.8731	9.2065	12.5744	14.1953	8.0277
+ILMN_1705183	MPO	8.4673	8.4729	9.8118	8.5687	10.6068	9.0168	9.2412	14.5349	8.2586
+ILMN_1802867	RNASE3	7.8771	8.617	9.2255	7.9219	11.4129	8.5187	10.3054	14.2301	8.6456
+										
+The data above is for use with an R programming exercise located at https://github.com/AlanBerger/Practice-programming-exercises-for-R										
+										
+The data above is a very small subset of a microarray gene expression dataset from the NCBI Gene Expression Omnibus (GEO) repository.										
+Its GEO Series number is GSE18885;  the full data set is available at     https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE18885  										
+This data  is from a study comparing gene expression levels in patients with Wegener’s granulomatosis (WG) 										
+"(now ""officially"" called granulomatosis with polyangiitis (GPA)), which is a rare systemic inflammatory disease,"										
+with gene  expression levels in Normal Controls (NC)										
+"The full data set (from August 2008) has 22184 probes measuring expression levels in 18189 unique genes, as of the "										
+annotation at that time (some genes have more than 1 probe measuring the amount of the mRNA of the gene).										
+The GEO annotation file for the Illumina platform used in obtaining this data is identified as GEO platform GPL6104 and is available at 										
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL6104     										
+"The date of this annotation file (most recent update) is Jan 18, 2013 "										
+It has information on 1 additional probe (ILMN_1749535 which is  for the  SDCBP2  gene) (so a total of 22185 probes)										
+and this version of the annotation assigns 18196 unique genes to these probes 										

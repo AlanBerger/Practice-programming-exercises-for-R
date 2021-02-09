@@ -1,7 +1,7 @@
 Nineth R Practice exercise: using a row of a data frame, the unlist and unname functions, composing a function
 --------------------------------------------------------------------------------------------------------------
 
-### Alan E. Berger Feb 8, 2020
+### Alan E. Berger Feb 8, 2020 a couple edits Feb 9
 
 ### available at <https://github.com/AlanBerger/Practice-programming-exercises-for-R>
 
@@ -37,7 +37,8 @@ In some cases, such as with a gene expression data set, one will want to extract
     df.X3 <- df[["X3"]]  
     df.X3
     [1]  9 10 11 12
-    # and also:  df.X3 <- df[[3]]  or  df.X3 <- df$X3  or  df.X3 <- df[, 3]  or  df.X3 <- df[, "X3"]
+    # and also:  df.X3 <- df[[3]]  or  df.X3 <- df$X3  or  df.X3 <- df[, 3]  
+    #            or  df.X3 <- df[, "X3"]
 
     df.colX3.subset <- df[["X3"]][c(2,4)]
     df.colX3.subset 
@@ -73,7 +74,8 @@ In some cases, such as with a gene expression data set, one will want to extract
     # Note the sum function is not so demanding
     sum(df.row2.subset )
     [1] 38
-    # but in general, to avoid problems, if one wants something treated as a vector 
+    # but in general, to avoid problems, 
+    # if one wants something treated as a vector 
     # one should convert it to a vector
      
     as.vector(df.row2)
@@ -83,7 +85,7 @@ In some cases, such as with a gene expression data set, one will want to extract
     [1] "data.frame"
     # that didn't work, so how do we get df.row2 in the form of a vector? 
      
-    unlist.df.row2 <- unlist(df.row2)  ###############################  unlist gets a vector
+    unlist.df.row2 <- unlist(df.row2)  ################  unlist gets a vector
     is.vector(unlist.df.row2)
     [1] TRUE
 
@@ -147,31 +149,40 @@ We are going to use a very small subset of a "real" gene expression data set. Wh
 
 The following data frame is a tiny subset of an Illumina microarray data set comparing gene expression levels in 41 Wegener's granulomatosis (**WG**) patients vs. 23 Normal Controls (**NC**). The microarray platform used has 22185 probes measuring the levels of mRNA for 18196 unique genes (as of the latest annotation for this platform - Jan 18, 2013); note there can be more than 1 probe measuring the amount of mRNA for a given gene. The full data set (and a link to the corresponding paper, and to the annotation for the microarray platform (GPL6104)) is available in the NCBI Gene Expression Omnibus (GEO) repository: <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE18885>
 
-    # A copy of this data file (a small tab delimited text file) has been placed in GitHub, at
-    #    https://github.com/AlanBerger/Practice-programming-exercises-for-R 
+    # A copy of this data file (a small tab delimited text file) has been placed in 
+    # GitHub, at https://github.com/AlanBerger/Practice-programming-exercises-for-R
     # The file name there is
-    # tiny-subset-of-GSE18885-gene-expression-data-9-genes-WG-5-samples-Normal-Control-4-samples.tab.txt 
+    # tiny-subset-of-GSE18885-gene-expression-data-9-genes-WG-5-samples-Normal-
+    # Control-4-samples.tab.txt 
 
     # the url for reading this data file into an R data frame using read.delim 
-    # (for reading in tab delimited text files) is given in the next line 
-    url.for.data.file <- "https://raw.githubusercontent.com/AlanBerger/Practice-programming-exercises-for-R/master/tiny-subset-of-GSE18885-gene-expression-data-9-genes-WG-5-samples-Normal-Control-4-samples.tab.txt"
+    # (for reading in tab delimited text files) is given in the next 3 lines 
+    url.for.data.file <- "https://raw.githubusercontent.com/AlanBerger/
+    Practice-programming-exercises-for-R/master/tiny-subset-of-GSE18885-
+    gene-expression-data-9-genes-WG-5-samples-Normal-Control-4-samples.tab.txt" 
+
     # Note this is NOT the same URL as   
-    # https://github.com/AlanBerger/Practice-programming-exercises-for-R/blob/master/tiny-subset-of-GSE18885-gene-expression-data-9-genes-WG-5-samples-Normal-Control-4-samples.tab.txt 
+    # https://github.com/AlanBerger/Practice-programming-exercises-for-R/blob/master/
+    #       tiny-subset-of-GSE18885-gene-expression-data-9-genes-WG-5-samples-Normal-
+    #       Control-4-samples.tab.txt 
     #
-    # and was obtained by clicking on the URL https://github.com/AlanBerger/Practice-programming-exercises-for-R 
-    # and then clicking on the file name 9 lines above, 
+    # and was obtained by clicking on the 
+    # URL https://github.com/AlanBerger/Practice-programming-exercises-for-R 
+    # and then clicking on the file name that starts with:  tiny-subset-of-GSE18885
     # and then by, in the resulting web page, clicking on the "raw" box  
-    # If one right clicks (in Windows) on the "raw" box, and then clicks on "Save link as..." one can 
+    # If one right clicks (in Windows) on the "raw" box, and then clicks on 
+    # "Save link as..." one can 
     # download a copy of this file into your computer
 
     # read in the data as a data frame
-    ma <- read.delim(url.for.data.file, nrows = 9, check.names = FALSE, stringsAsFactors = FALSE)
+    ma <- read.delim(url.for.data.file, nrows = 9, check.names = FALSE, 
+                     stringsAsFactors = FALSE)
 
     # Note the use of nrows = 9 since there is information on the source of this data in 
     # later rows that should not be read in as data.
-    # The choice check.names = FALSE "tells" R to leave the column headers as is (otherwise R would
-    # replace spaces in column names with a period which is not visually appealing, and here we don't 
-    # need to have "standard for R" column names).
+    # The choice check.names = FALSE "tells" R to leave the column headers as is 
+    # (otherwise R would replace spaces in column names with a period which is not visually 
+    # appealing, and here we don't need to have "standard for R" column names).
     ma
       Illumina PROBE_ID    gene   NC 1   NC 2    NC 3   NC 4    WG 1   WG 2    WG 3    WG 4   WG 5
     1      ILMN_1730867    AZU1 7.5719 7.8004  9.2853 7.6631 10.1137 7.7436  9.2764 13.2686 7.5619
@@ -184,7 +195,9 @@ The following data frame is a tiny subset of an Illumina microarray data set com
     8      ILMN_1705183     MPO 8.4673 8.4729  9.8118 8.5687 10.6068 9.0168  9.2412 14.5349 8.2586
     9      ILMN_1802867  RNASE3 7.8771 8.6170  9.2255 7.9219 11.4129 8.5187 10.3054 14.2301 8.6456
 
-Here we have data for 9 Illumina probes, giving gene expression levels for 9 genes chosen for this example from genes relevant to Wegener's granulomatosis (**WG**), a rare systemic inflammatory disease (now "officially" called granulomatosis with polyangiitis (GPA)). The 4 Normal Control (NC) samples and the 5 Wegener's granulomatosis (WG) samples are the first four NC and the five WG samples as listed in the GEO repository for this data set. The data is measured gene expression levels in the peripheral blood mononuclear cell (PBMC) fraction of blood cells. The measured expression levels for each sample were *normalized* by *scaling* so that the median for each sample was 256 (2^8); (all the values for each sample were multiplied by a constant k specific to that sample so that the median of the values for each sample was 256). The choice of 256 does not matter for the analysis, it is just a convenient value. Normalization (here done by scaling) adjusts values to account for, in particular, different total amounts of mRNA used for individual samples, and different *gain* settings in the fluorescence scanner; scaling is a sufficient normalization procedure for this type of Illumina microarray. The normalized expression values are then log base 2 transformed, i.e., the logarithm (base 2) of each scaled value was used in the analysis procedures described below. Note then the median of the scaled log base 2 transformed values for each sample is 8. This is a little above the "background noise" level for this technology for this data set.
+Here we have data for 9 Illumina probes, giving gene expression levels for 9 genes chosen for this example from genes relevant to Wegener's granulomatosis (**WG**), a rare systemic inflammatory disease (now "officially" called granulomatosis with polyangiitis (GPA)). The 4 Normal Control (NC) samples and the 5 Wegener's granulomatosis (WG) samples are the first four NC and the first five WG samples as listed in the GEO repository for this data set. The data is measured gene expression levels in the peripheral blood mononuclear cell (PBMC) fraction of blood cells. The measured expression levels for each sample were *normalized* by *scaling* so that the median of the expression values for all the probes for each sample was 256 (2^8); (all the values for each sample were multiplied by a constant k specific to that sample so that the median of the values for each sample was 256). The choice of 256 does not matter for the analysis, it is just a convenient value.
+
+Normalization (here done by scaling) adjusts values to account for, in particular, different total amounts of mRNA used for individual samples, and different *gain* settings in the fluorescence scanner; scaling is a sufficient normalization procedure for this type of Illumina microarray. The normalized expression values are then log base 2 transformed, i.e., the logarithm (base 2) of each scaled value was used in the analysis procedures described below. Note then the median of the scaled log base 2 transformed values for each sample is 8. This is a little above the "background noise" level for this technology for this data set. The **ma** data frame above contains a small illustrative subset of the scaled log base 2 transformed expression level values.
 
 The log transformed values are more suitable for use with the t-test to get p-values for examining statistical significance of differences in gene expression between the WG and NC groups. Statistical significance is a major topic in the Statistical Inference course (Course 6) in the Johns Hopkins University Data Science Specialization on Coursera; one doesn't need to be familiar with this for the purpose of this practice exercise. Here we are going to calculate, for each gene, the *p-value* and the WG/NC *fold change* (the ratio of the expression level of the gene in the WG samples divided by the expression level of the gene in the NC samples) and construct a data frame containing this information.
 
@@ -195,15 +208,18 @@ Programming Exercise: Calculate the p-value and fold change for comparing the WG
 
 Approach: In a for loop running over the 9 rows of the **ma** data frame above; first obtain **as vectors**, the 4 expression values for the NC samples for the gene of the the row, and the 5 expression values for the WG samples for the gene of the row. Call these vectors, for example, NCvec and WGvec respectively. One can calculate the **two-sided p-value** for the difference in expression levels between the WG and NC groups for the gene via `pval <- t.test(WGvec, NCvec)$p.value` The WG/NC expression level **fold change** is given by `WG.over.NC.fold.change <- 2^(mean(WGvec) - mean(NCvec))` The form of this is due to the fact that the data in the ma data frame consists of log base 2 values. Side note: `2^(mean(WGvec) - mean(NCvec))` is equal to `2^mean(WGvec) / 2^mean(NCvec)` and the numerator and denominator in this expression are the *geometric mean* of the normalized (but not log 2 transformed) expression values for the WG samples and for the NC samples, respectively. Place the p-values in a vector and the fold change values in a vector and construct a data frame consisting of the names of the genes (column 1 of the ma data frame), and the p-values and the fold changes.
 
-A working version of a function which does is is given below.
+A working version of a function which does this is given below.
 
 ``` r
-# the url for reading the little gene expression data file into an R data frame using read.delim 
-# (for reading in tab delimited text files) is given in the next line 
-url.for.data.file <- "https://raw.githubusercontent.com/AlanBerger/Practice-programming-exercises-for-R/master/tiny-subset-of-GSE18885-gene-expression-data-9-genes-WG-5-samples-Normal-Control-4-samples.tab.txt"
-# 
+# the url for reading the little gene expression data file into an R data frame using 
+# read.delim  (for reading in tab delimited text files) is given in the next 3 lines 
+url.for.data.file <- "https://raw.githubusercontent.com/AlanBerger/
+Practice-programming-exercises-for-R/master/tiny-subset-of-GSE18885-
+gene-expression-data-9-genes-WG-5-samples-Normal-Control-4-samples.tab.txt" 
+ 
 # read in the data as a data frame
-ma <- read.delim(url.for.data.file, nrows = 9, check.names = FALSE, stringsAsFactors = FALSE)
+ma <- read.delim(url.for.data.file, nrows = 9, check.names = FALSE, 
+                 stringsAsFactors = FALSE)
 
 # display ma
 ma
@@ -231,16 +247,19 @@ ma
     ## 9 14.2301 8.6456
 
 ``` r
-# now, in a for loop, get the p-values and fold changes for each gene as described above
+# now, in a for loop, get the p-values and fold changes 
+# for each gene as described above
 num.genes <- nrow(ma)  # the number of genes in this data frame
 
 gene <- ma$gene  # the column of gene names
+probe.vec <- ma[[1]]
 # get vectors to hold the p-value and fold change values
 p.value <- numeric(num.genes)
 fold.change <- numeric(num.genes)
 
 for (i in 1:num.genes) {
-# get the vector for the WG expression values and the vector for the NC expression values for the ith gene
+# get the vector for the WG expression values and the vector 
+# for the NC expression values for the ith gene
    NCvec <- unlist(ma[i, 3:6])
    WGvec <- unlist(ma[i, 7:11])
 
@@ -251,25 +270,33 @@ for (i in 1:num.genes) {
    fold.change[i] <- WG.over.NC.fold.change  
 }
 
-# construct the desired data frame
-analysis.results <- data.frame(gene, p.value, fold.change, stringsAsFactors = FALSE, check.names = FALSE)
-colnames(analysis.results) <- c("gene", "p-value", "WG/NC fold change")
+# Construct the desired data frame. Include the PROBE_ID column since 
+# it is used as the identifier in the microarray platform annotation file, and  
+# the probe identifiers are all distinct. Also, several probes can "query" the 
+# same gene, and in fact one gene can code for variants of a protein using 
+# combinations of different sub-sections (exons) of the gene, so the information 
+# on which sub-section of the gene the probe is "matching" can be important.
+
+analysis.results <- data.frame(probe.vec, gene, p.value, fold.change, 
+                               stringsAsFactors = FALSE, check.names = FALSE)
+colnames(analysis.results) <- c("Illumina PROBE_ID", "gene", "two-sided p-value", 
+                                "WG/NC fold change")
 analysis.results 
 ```
 
-    ##      gene    p-value WG/NC fold change
-    ## 1    AZU1 0.22993719          2.853366
-    ## 2     BPI 0.10421720          4.737957
-    ## 3    CAMP 0.05731959          7.423116
-    ## 4 CEACAM8 0.15314950          5.388804
-    ## 5   DEFA4 0.14680018          5.450864
-    ## 6    ELA2 0.30872616          2.833058
-    ## 7    MMP9 0.04866715          9.064328
-    ## 8     MPO 0.25730723          2.831340
-    ## 9  RNASE3 0.10343345          4.633701
+    ##   Illumina PROBE_ID    gene two-sided p-value WG/NC fold change
+    ## 1      ILMN_1730867    AZU1        0.22993719          2.853366
+    ## 2      ILMN_1766736     BPI        0.10421720          4.737957
+    ## 3      ILMN_1688580    CAMP        0.05731959          7.423116
+    ## 4      ILMN_1806056 CEACAM8        0.15314950          5.388804
+    ## 5      ILMN_1753347   DEFA4        0.14680018          5.450864
+    ## 6      ILMN_1706635    ELA2        0.30872616          2.833058
+    ## 7      ILMN_1796316    MMP9        0.04866715          9.064328
+    ## 8      ILMN_1705183     MPO        0.25730723          2.831340
+    ## 9      ILMN_1802867  RNASE3        0.10343345          4.633701
 
 In a "full" gene expression analysis, where one examines on the order of ten or twenty thousand genes, one needs to account for the large number of statistical tests being done, a consequence of which is having a considerable number of low p-values
-occur just by random chance. This issue is often addressed by calculating the *false discovery rate* (FDR) for each gene; the FDR is covered in the Statistical Inference course (Video 12 01 Multiple Comparisons). Note we used a small subset of the samples, and hence there is less *statistical power* and the p-values above are much larger than obtained when using the data from all the samples.
+occur just by random chance. This issue is often addressed by calculating the *Benjamini-Hochberg false discovery rate* (FDR) for each gene; the FDR is covered in the Statistical Inference course (Video 12 01 Multiple Comparisons). Note we used a small subset of the samples, and hence there is less *statistical power* and the p-values above are much larger than obtained when using the data from all the samples.
 
 Hope this was informative and good practice. The next exercise will contain further practice in using data frames, utilizing this gene expression data set.
 

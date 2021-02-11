@@ -7,7 +7,7 @@
 
 ## Nineth R Practice exercise: using a row of a data frame, the unlist and unname functions, composing a function 
 
-### Alan E. Berger  Feb 8, 2020 a couple edits Feb 9
+### Alan E. Berger  Feb 8, 2020; a couple edits Feb 9; edits on statistical significance Feb 11
 
 ### available at https://github.com/AlanBerger/Practice-programming-exercises-for-R 
 
@@ -16,7 +16,7 @@
 This is the nineth in a sequence of programming exercises in "composing" an R function 
 to carry out a particular task. Several of these "exercise files" likely  
 will take several sessions to master the content.  The material below practices composing a logical
-sequences of steps to program a function that will accomplish a specified task, and 
+sequence of steps to program a function that will accomplish a specified task, and 
 preparing a corresponding data frame. 
 
 The idea of this set of exercises is to practice correct use of R constructs and 
@@ -261,12 +261,33 @@ of the scaled log base 2 transformed values for each sample is 8. This is a litt
 level for this technology for this data set.  The **ma** data frame above contains a small illustrative subset of the
 scaled log base 2 transformed expression level values. 
 
-The log transformed values are more suitable for use with the t-test to get p-values for examining statistical significance 
+The log transformed values are more suitable for use with the t-test to get p-values for examining **statistical significance**  
 of differences in gene expression between the WG and NC groups. Statistical significance is a major topic in the 
 Statistical Inference course (Course 6) in the Johns Hopkins University Data Science Specialization on Coursera; 
 one doesn't need to be familiar with this for the purpose of this practice exercise. Here we are going to calculate, 
 for each gene, the _p-value_ and the WG/NC _fold change_ (the ratio of the expression level of the gene in the WG samples 
 divided by the expression level of the gene in the NC samples) and construct a data frame containing this information. 
+
+Side note: statistical significance (the _p-value_) is referring to how unusual it would be to have obtained, just by random chance, 
+a test statistic as large or larger in magnitude than the one calculated for the actual data, when there was no difference 
+between the two populations the data was sampled from (that is, no difference in terms of the value being measured, 
+e.g., the expression level of a given gene), assuming the requirements for the statistical test to be valid were satisfied. 
+As a simple example, if one flipped a coin 7 times and got all heads, how unlikely would that be if one assumed the coin 
+was a "fair coin" - not weighted to favor either heads or tails.
+
+It is important to be aware that **statistical significance** does not necessarily imply "practical significance". 
+For example, a medication under study to reduce blood pressure might result in a _very small_ lowering of 
+blood pressure, that could in theory be demonstrated in a sufficiently large clinical trial 
+(i.e., with enough subjects in the clinical trial, one would expect to obtain a small p-value with a suitable 
+statistical test on the blood pressure difference between treatment and no treatment). 
+The small lowering of blood pressure would then be _statistically significant_, but not medically important (so NOT "significant" 
+in the usual way the word significant is used).  One thus needs to also consider the **effect size**, that is, how large 
+some measure of the difference is, and is that of practical importance in the particular setting that the data is referring 
+to. For example the level of change in gene expression that has an important effect for a protein that initiates 
+an amplifying cascade of regulatory signaling in a cell might be of no importance for a protein whose effect is not similarly 
+amplified.  Interpretation of statistical analysis will often depend on subject area knowledge by the analyst and/or on an 
+appropriate collaboration. The _fold change_ as defined above is a measure of effect size commonly used in gene 
+expression analysis.   
 
 Note for a full gene expression data set, which often has data for well over 10,000 genes it is customary to have 
 the rows be for genes and the columns be for samples. This is opposite the usual layout of data frames in R where 
@@ -286,9 +307,9 @@ due to the fact that the data in the ma data frame consists of log base 2 values
 equal to `2^mean(WGvec) / 2^mean(NCvec)` and the numerator and denominator in this expression are the _geometric mean_ of the 
 normalized (but not log 2 transformed) expression values for the WG samples and for the NC samples, respectively. 
 Place the p-values in a vector and the fold change values in a vector and construct a data frame consisting of the names of 
-the genes (column 1 of the ma data frame), and the p-values and the fold changes.
+the probe identifiers (column 1 of the ma data frame), the genes, and the p-values and the fold changes.
 
-A working version of a function which does this is given below.
+A working version of R code which does this is given below.
 
 ``` {r}
 # the url for reading the little gene expression data file into an R data frame using 

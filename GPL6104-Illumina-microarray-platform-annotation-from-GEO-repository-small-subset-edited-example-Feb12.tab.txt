@@ -1,0 +1,22 @@
+Illumina Probe_ID	ILMN_Gene	Entrez_Gene_ID	Chromosome	Probe location in chromosome	Protein coded by gene - very short description
+ILMN_1698220	PHTF2	57157	7	77424374-77424423	homeodomain transcription factor 2
+ILMN_1810835	SPRR3	6707	1	151242655-151242704	small proline-rich protein 3
+ILMN_1688580	CAMP	820	3	48241909-48241918:48241919-48241958	cathelicidin antimicrobial peptide
+ILMN_1802867	RNASE3	6037	14	20430090-20430139	"ribonuclease, RNase A family, 3"
+ILMN_1766736	BPI	671	20	36399055-36399104	bactericidal/permeability-increasing protein
+ILMN_1753347	DEFA4	1669	8	6781040-6781073:6781660-6781675	"defensin, alpha 4"
+ILMN_1749014	ACLY	47	17	37277254-37277303	ATP citrate lyase
+ILMN_1785926	ZNF621	285268	3	40555813-40555862	zinc finger protein 621
+ILMN_1796316	MMP9	4318	20	44078320-44078369	matrix metallopeptidase 9
+ILMN_1706635	ELA2	1991	19	807179-807228	elastase 2
+ILMN_1705183	MPO	4353	17	53702640-53702689	myeloperoxidase
+ILMN_1806056	CEACAM8	1088	19	47776394-47776443	carcinoembryonic antigen-related cell adhesion 8
+ILMN_1730867	AZU1	566	19	781858-781907	azurocidin 1 antimicrobial protein
+ILMN_1813399	ATP2B1	490	12	88506745-88506794	"ATPase, Ca++ transporting variant 2"
+ILMN_1750599	ATP2B1	490	12	88516580-88516629	"ATPase, Ca++ transporting variant 1"
+					
+					
+small subset of annotation from the Gene Expression Omnibus for Illumina microarray platform GPL6104					
+for use in an R programming exercise					
+the full file is located at					
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL6104					

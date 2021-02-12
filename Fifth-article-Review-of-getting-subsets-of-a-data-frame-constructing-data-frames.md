@@ -243,7 +243,7 @@ An example of how %in% behaves:
 
     ?"%in%"  # look at the help on %in% Note because of the special
     #            character % one needs to "protect" %in% by enclosing it in
-    #            either quotes or apostrophes
+    #            either quotes or apostrophes when "asking for help" on it
 
     v <- c(1, 2, 3, 4, 5, NA)
     w <- c(12, 3, 8, 22, 4)

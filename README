@@ -1,14 +1,16 @@
 This repository (under construction) will contain a sequence of programming exercises 
 intended to fill the gap between learning the correct syntax of basic R commands and 
 the programming assignments in the R Programming course in the Johns Hopkins University 
-Data Science Specialization on Coursera. In this sequence of exercises in "composing" 
-an R function to carry out a particular task, the idea is to practice correct use 
-of R constructs and built in functions (functions the "come with" the basic R installation), 
-while "putting together" a correct sequence of commands that will obtain the desired result.
+Data Science Specialization on Coursera. These exercises review basic R constructs 
+and provide practice in "composing" an R function to carry out a particular task. 
+The idea is to practice correct use of R constructs and built in functions 
+(functions the "come with" the basic R installation), while "putting together" a correct 
+sequence of groups of commands that in a logical sequence of steps will obtain the desired result.
 
-In these exercises, there will be a statement of what your function should do 
-(what are the input variables and what the function should return) and a sequence of "hints". 
-To get the most out of these exercises, try to write your function using as few hints as possible. 
+In these exercises, there will be a statement of what your function (or R code) should do - 
+what are the input variables and what the function should return - and an outline or sequence of "hints". 
+To get the most out of these exercises, try to write your function using as few hints as possible. A working 
+code for each function is provided.
  
 Note there are often several ways to write a function that will obtain the correct result. 
 For these exercises the directions and hints may point toward a particular approach intended 
@@ -20,5 +22,27 @@ with each step a section of code, to obtain a working function,
 not to find an existing solution or a quick solution using a 
 more powerful R construct that is better addressed later on.
 
+A list of the exercises with their number; the R constructs they practice and / or R topics they address; and what the function(s) in that exercise do is given below. This listing is as of 20 February 2021
 
+1. Use of the R letters character vector and the R paste and which and tolower functions; construct a function that, given an Excel column letter will return the corresponding integer column number, construct a function that will similarly deal with a vector of Excel column numbers 
 
+2. if, else if, else syntax and logic; construct a function that given a numeric value between 0 and 1 will return a corresponding character variable (a length 1 character vector) with 3 significant digits (practice using if constructs and the round function rather than R’s signif or format functions)
+
+3. Practice using a for loop and if tests and the R mod function %%, return within an if test, comments on debugging code, return an integer vector whose entries have names; construct a function called isItPrime(n) that tests whether a given positive integer is a prime number
+
+4. Accumulate entries in a vector using successive concatenation or by: starting with a sufficiently large initial vector and filling in the desired entries using a running index, and then trimming the vector to the appropriate size, use of the readline function to have interactive input from the user; construct a function called getPrimeNumbers(N) that given a positive integer N that is at least 2, returns in an integer vector all the prime numbers that are less than or equal N (uses isItPrime(n) from the previous exercise)
+
+5. This file reviews topics in "dealing with" data frames (programming exercises using data frames are given in the next several files): Extracting a column of a data frame as a vector, review of the many ways to get a specified subset of a data frame, the which function for getting a vector of row numbers for which some condition is TRUE, the %in% function for determining the indices k of a vector V such that V[k] is an entry of some other vector W, creating a data frame by reading in a suitable text file using read.csv or read.table, creating a data frame using the data.frame function, concatenating suitable data frames using rbind and cbind 
+
+6. The path to a folder - full (absolute) paths and relative paths, the list.files function for listing names of files that are in a folder that have a given pattern in their file name, the grep function for finding which character strings have a given pattern in them, a brief introduction to regular expressions for pattern searching, the file.info function for obtaining information about a file, the colnames function for (re)naming the columns of a data frame; construct a function that finds all the file names in a given folder that have every pattern given in a character vector (called search.strings) in their file name, and construct a data frame containing these file names along with their most recent modification date and file size, do test runs for files in a folder set up to test these functions
+
+7. More practice composing a function to carry out a prescribed task, a systematic way to debug a function by running its code line by line in the R console and examining what happens with each line, the unique function; construct a modified version of the function in the previous exercise that outputs the same information but for the files containing any of the patterns in search.strings (rather than all the patterns in search.strings)
+
+8. More practice composing a function to carry out a prescribed task, practice using the %in% function, the setdiff function; construct a function that returns the file names in a folder that do not contain any of the entries of serch.strings in their file name
+
+9. Extracting part of a row of a data frame as a vector, the unlist and unname functions, reading in a data file using the web url of the file, more practice constructing a data frame; R code to analyze a small gene expression data set - getting results for each gene where the data for each gene is in a row of the input data frame
+
+10. Merging a subset of rows in a data frame dfy to a data frame dfx where dfy may contain more rows than dfx and the relevant subset of rows of dfy need to be reordered to line up with those in dfx, doing this "by hand" to practice basic R constructs, doing this with the R merge function, the row.names function, the identical function, and another debugging "investigation"; R code to append (merge) annotation data to a gene expression analysis
+results data frame 
+
+Note the reader should not infer any endorsement or recommendation or approval for the material in this article from any of the sources or persons cited above or any other entities mentioned in this article.

@@ -57,7 +57,7 @@ Here are a few sample results from using the mod function
 
     ## [1] 2
 
-A positive integer p is called **prime** if p &gt; 1 and the only positive integers that evenly divide p are 1 and p (so the first several prime numbers are 2, 3, 5, 7, 11, 13). We can thus use the mod function to test whether a given positive integer is prime. There are more sophisticated approaches, see for example the Wikipedia article {"Primality Test"}(<https://en.wikipedia.org/wiki/Primality_test#>:~:text=9%20External%20links-,Simple%20methods,composite%2C%20otherwise%20it%20is%20prime.)
+A positive integer p is called **prime** if p &gt; 1 and the only positive integers that evenly divide p are 1 and p (so the first several prime numbers are 2, 3, 5, 7, 11, 13). We can thus use the mod function to test whether a given positive integer is prime. There are more sophisticated approaches, see for example the Wikipedia article ["Primality Test"](<https://en.wikipedia.org/wiki/Primality_test#>:~:text=9%20External%20links-,Simple%20methods,composite%2C%20otherwise%20it%20is%20prime.)
 
 This is an example of it often being the case that one needs to learn something about the data and or the science that is relevant to the program one is writing in order to properly do an analysis or correctly carry out a calculation. This can sometimes be essential to avoid serious mistakes, or to write a program that does not take an impractical amount of time to do the calculation.
 

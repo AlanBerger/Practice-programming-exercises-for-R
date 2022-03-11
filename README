@@ -1,4 +1,4 @@
-This repository (under construction) will contain a sequence of programming exercises 
+This repository will contain a sequence of programming exercises (currently 12) 
 intended to fill the gap between learning the correct syntax of basic R commands and 
 the programming assignments in the R Programming course in the Johns Hopkins University 
 Data Science Specialization on Coursera. These exercises review basic R constructs 
@@ -10,7 +10,8 @@ sequence of groups of commands that in a logical sequence of steps will obtain t
 In these exercises, there will be a statement of what your function (or R code) should do - 
 what are the input variables and what the function should return - and an outline or sequence of "hints". 
 To get the most out of these exercises, try to write your function using as few hints as possible. A working 
-code for each function is provided.
+code for each function is provided. If at first doing the programming is too hard, it still should be helpful 
+to read the commentary on how the functions were "put together" and looking over the code and seeing how it works.  
  
 Note there are often several ways to write a function that will obtain the correct result. 
 For these exercises the directions and hints may point toward a particular approach intended 
@@ -22,7 +23,10 @@ with each step a section of code, to obtain a working function,
 not to find an existing solution or a quick solution using a 
 more powerful R construct that is better addressed later on.
 
-A list of the exercises with their number; the R constructs they practice and / or R topics they address; and what the function(s) in that exercise do is given below. This listing is as of 20 February 2021
+For each exercise, an .md file and or .pdf file is given, and the R markdown (.Rmd) file which generated it is also given. 
+If you want to copy code into a file or into R,  do so from either the .Rmd or the .md files, since copying R code from these pdf files does not always work (some lines seem to have extra encoding that disrupts use in  R). 
+
+A list of the exercises with their number; the R constructs they practice and / or R topics they address; and what the function(s) in that exercise do is given below. This listing is as of 10 March 2022
 
 1. Use of the R letters character vector and the R paste and which and tolower functions; construct a function that, given an Excel column letter will return the corresponding integer column number, construct a function that will similarly deal with a vector of Excel column numbers 
 
@@ -44,4 +48,8 @@ A list of the exercises with their number; the R constructs they practice and / 
 
 10. Merging a subset of rows in a data frame dfy to a data frame dfx where dfy may contain more rows than dfx and the relevant subset of rows of dfy need to be reordered to line up with those in dfx, doing this "by hand" to practice basic R constructs, doing this with the R merge function, the row.names function, the identical function, and another debugging "investigation"; R code to append (merge) annotation data to a gene expression analysis results data frame 
 
-Note the reader should not infer any endorsement or recommendation or approval for the material in these files from any of the sources or persons cited in any of these files or any other entities mentioned in any of these files.
+11. Detailed information on using sapply and split, and also use of  the ellipsis (...) functionality in sapply for passing in additional arguments to the function used in sapply. Most of this information is valid for lapply as well. Simple examples, and examples and exercises using the R iris data set
+
+12. An example of using Monte Carlo simulation (using an appropriate random number generator) to investigate a statistical question. The statistical question is: given some independent random samples s_1,..., s_k without replacement from the integers 1 through N (so none of the integers in 1 through N can be chosen more than once), what is a good estimate for N? This is a well known question with a known best (frequentist) estimate for N (references are given). The point here is to describe in detail Monte Carlo simulation to "explore" a question, and to give example R code to implement it.
+
+Note the reader should not infer any endorsement or recommendation or approval for the material in these files from any of the sources or persons cited in this file or any of these files, or from any other entities mentioned in any of these files.

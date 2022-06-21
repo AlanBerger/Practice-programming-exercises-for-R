@@ -9,7 +9,7 @@
 
 ## Eleventh R Practice exercise using sapply and split and also use of ellipsis to pass in additional arguments
 
-### Alan E. Berger  Feb 11, 2022
+### Alan E. Berger  Feb 11, 2022; edit June 20 to emphasize requirement on first argument of FUN in sapply 
 
 ### available at https://github.com/AlanBerger/Practice-programming-exercises-for-R 
 
@@ -21,7 +21,7 @@ Much of what is described below for sapply is also applicable to lapply.
 
 We will go over some simple examples, and then use the iris data set to demonstrate sapply and split, and the ellipsis (...) functionality available in sapply.
 
-Note if you want to copy lines from this for use in R, it is best to copy from the .Rmd file, since sometimes text in the pdf file can contain formatting characters that R does not accept.
+Note if you want to copy lines from this for use in R, it is best to copy from the .Rmd file, since sometimes text in the pdf file can contain formatting characters that R does not accept. To download an Rmd file, open the Rmd file to display it in GitHub and then toward the upper right of the resulting window there will be a "raw box" (to the left of "Blame"), on which one should be able to do (for Windows): right click, "save as" to download the .Rmd file as a text file.  
 
 
 ``` {r}
@@ -40,7 +40,8 @@ Note if you want to copy lines from this for use in R, it is best to copy from t
 # is a vector; to each column of X (taken as a vector) if X is 
 # a data frame, to each entry of X if X is a list (vectors and data.frames
 # are special types of list). When possible the result from sapply will 
-# be a vector (or matrix if that is appropriate).
+# be a vector (or matrix if that is appropriate). Otherwise sapply will 
+# return a list (just as lapply would).
 
 # The optional ellipsis argument can be used to pass in additional 
 # arguments to the function specified in the FUN argument of sapply 
@@ -50,38 +51,46 @@ Note if you want to copy lines from this for use in R, it is best to copy from t
 # by x^2, but here we demonstrate use of sapply and an anonymous function):
 
 v <- 1:5
-sapply(v, function(y) y^2) 
+sapply(X = v, FUN = function(y) y^2) 
 
- 
-# this is equivalent to: sapply(X = v, FUN = function(y) y^2)
+# ********  IT IS BEST to use the form: argument.name = user.chosen.value 
+# ********  when calling one of the apply family of functions. In this call 
+# ********  to sapply, the name of the first argument of sapply is X and 
+# ********  the value chosen for X is v; and the second argument of sapply
+# ********  is FUN, and the value chosen for FUN is the
+# ********  anonymous function, function(y) y^2
 
-# Note y in the definition of the function is a "formal argument", 
+# Note y in the definition of this function is a "formal argument", 
 # also called a "dummy argument", meaning any variable name permissible 
 # in R could be used, for example
 
 # sapply(X = v, 
-# FUN = function(user.chosen.argument.name) user.chosen.argument.name^2)
+# FUN = function(user.selected.name) user.selected.name^2)
 
 # One could also optionally include curly brackets to delineate the 
 # function:
 
-# sapply(v, function(y) {y^2}) # or: sapply(X = v, FUN = function(y) {y^2})
+# sapply(X = v, FUN = function(y) {y^2}) 
 
-# sapply here, in effect, successively calls the function with each 
-# entry of v as its argument, and "collects" the results in a vector.
+# sapply, in effect, successively calls the function the user has
+# provided for FUN, here function(y) {y^2} 
+# with each entry of v as its argument, 
+# and "collects" the results in a vector.
 
 # My point of view is it is fine to use an anonymous function if it 
 # is short (will fit in a line or so), but otherwise it makes the code 
-# much measier to proofread and so avoid/detect bugs if one codes the 
-# function as a stand-alone function and uses its name in 
-# the FUN argument of sapply. 
-
+# much easier to proofread and so avoid/detect bugs if one codes the 
+# function as a stand-alone function, call it, for example, 
+# user.function and uses its name in the FUN argument of sapply via
+#    FUN = user.function  
+# Here user function could also be any function that is available in the
+# current R session 
 
 # demonstrate use of the ellipsis argument of sapply to pass in an 
 # additional argument of FUN
 
 
-sapply(v, function(x, power) x^power, power = 3)
+sapply(X = v, FUN = function(x, power) x^power, power = 3)
 
 
 # Here each entry of v is passed into the function as the value for x, 
@@ -94,17 +103,37 @@ sapply(v, function(x, power) x^power, power = 3)
 # (or it might have gotten changed from what you thought it would be).
 
 power <- 4
-sapply(v, function(x) x^power)  # this worked but is not best practice
+sapply(X = v, FUN = function(x) x^power)  # this worked but is not best practice
 
 
 # Here is an example with two additional arguments supplied using 
 # the ellipsis functionality of sapply, and where sapply returns a matrix
 
 v <- 1:5
-sapply(v, function(x, power1, power2) {c(x^power1, x^power2)}, 
+sapply(X = v, FUN = function(x, power1, power2) {c(x^power1, x^power2)}, 
        power1 = 2, power2 = 3)
 
 ```
+
+##  The first argument of the function in sapply MUST BE for the entries of X
+
+Suppose one is calling sapply via, for example,
+
+result <- sapply(X = v, FUN = user.function, other.arg1 = a1, other.arg2 = a2)
+
+where v is a vector or data frame or list, so sapply will successively 
+call user.function with each entry, refer to it as $E$, of v (each column if v is a data frame).
+**It is important to note that**:
+
+sapply will successively call user.function with $E$ **as the first argument of user.function**
+
+So user.function (if programmed by us) should be programmed that way, and if user.function is a built in function that comes with the base R installation, or has been "loaded" from a package, its first argument should be for entries of v. (Technically, this is not  absolutely required, but not conforming with this "first argument condition" can lead to mysterious errors and is best avoided.) In the conceptual example above, other.arg1 and other.arg2 are other arguments of user.function and their values have been set to a1 and a2, respectively, in this call.  Arguments passed into user.function via the ellipsis functionality of sapply must be called in the 
+
+argument.name = chosen.value
+
+format.
+
+This "first argument condition" is pretty natural, in that for many R functions, the first argument (or first couple of arguments) are what the function "acts on" and following arguments (which have default values) govern options on how that is done. For example the mean function takes the mean of a vector, and its other options modulate how that is done, and read.table reads in a suitable file as a data frame, and it has quite a few options on how that is done, and the plot function can produce a scatterplot of y vs. x with a multitude of options allowing for fine detailed control of the form of the plot. 
 
 ## Now use the iris data set to illustrate use of sapply
 
@@ -174,6 +203,7 @@ head(iris.df)
 
 sapply(X = iris.df[, 1:4], FUN = mean, na.rm = TRUE, trim = 0.11)
 
+# Note that sapply "captured" the names of the columns of iris.df[, 1:4]
 
 # since the lengths of the 4 columns after removing NAs 
 # were 150, 149, 150, 150;
@@ -206,7 +236,7 @@ mean(x[17:(length(x) - 16)])
 # arguments be declared arguments of the function (as with the power 
 # argument(s) in the examples above), OR to have an ellipsis in the 
 # argument list of the function specified by FUN, AND used appropriately 
-# within the anonymous function. Note for readability, the first argument 
+# within the anonymous function. Again, the first argument 
 # of the function FUN in sapply should be for 
 # what will be passed from each entry of the first argument X of sapply. 
 # For example in the call to sapply below, 
@@ -419,11 +449,20 @@ return(the.4.means)
 
 # use sapply and this function to get the matrix of means
 result <- sapply(X = df.split.list, FUN = get.all.4.means.in.df) 
-
 result
 
 # notice sapply conveniently captured the row and column names for 
 # the matrix from the data frames it operated on
+
+rownames(result)
+
+# And in particular:
+
+colnames(result)
+
+# will be the same as
+
+names(df.split.list)
 
 # if one prefers one can transpose the matrix
 print(t(result))
